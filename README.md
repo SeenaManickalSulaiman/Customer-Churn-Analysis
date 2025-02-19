@@ -21,3 +21,19 @@ Customer churn analysis is the process of identifying and understanding why cust
 
 ## **The Impact of Customer Churn on Businesses**
 Customer churn significantly impacts companies, especially Software-as-a-Service (SaaS) businesses, due to high customer acquisition costs. Churn affects Business-to-Business (B2B) and Business-to-Consumer (B2C) businesses differently, with B2C experiencing higher rates due to easier subscription changes. B2B churn is more impactful due to fewer, high-value customers. Churn can demoralize staff and distract from serving existing customers. There are two types of churn: voluntary (customer choice) and involuntary (external factors). Companies should measure churn rates regularly and use metrics like Customer Satisfaction (CSAT), Net Promoter Score (NPS), and Customer Effort Score (CES) to gauge customer satisfaction. Predictive and preventive churn models, survival analysis, and anomaly detection help forecast and mitigate churn. Reducing churn involves identifying at-risk customers, investing in customer success, providing excellent service, fair pricing, and strong loyalty programs. Artificial Intelligence (AI) can enhance churn management through better data analysis, predictive analytics, and improved customer support.
+
+# **Maths Behind it**
+
+If time to event has the probability density function $f(t)$ and cumulative distribution function $F(t)$, then the probability of surviving at least to time $t$ is: $Pr(T>t)=S(t)=1-F(t)$. 
+
+Cumulative hazard at time t is defined as $H(t)=-ln(S(t))$ and instantaneous hazard at time $t$ is $h(t)=\frac{dH(t)}{dt}$. The instantateous hazard can also be written as $h(t)=\frac{f(t)}{S(t)}$
+
+The likelihood function for survival analysis is described as:
+
+$$ l(\beta) = \prod_{n=1}^{n} h(t_{i})^{d_{i}} S(t_{i}) $$
+where $d_i$ is the censoring variable that equals to 1 if the event is observed for individual $i$ and 0 if the event is not observed (censored) for individual $i$, $h(t_i)$ is the hazard for individual $i$ at time $t$, $H(t_i)$ is the cumulative hazard for individual $i$ at time $t$, and $S(t_i)$ is the survival probability for individual $i$ at time $t$. Note that when $d_i=0$, the contribution of the $i$'th individual to the likelihood function is just its survival probability until time $t$: S(t). If the individual has the event, the contribution to the likelihood function is given by the density function $f(t)=h(t)S(t)$.
+
+The log of likelihood is:
+
+$$ logl(\beta) = \sum_{i=1}^n d_i log(h(t_i)) - H(t_i) $$
+where $log$ is the natural logarithm.
