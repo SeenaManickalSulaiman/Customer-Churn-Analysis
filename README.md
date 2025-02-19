@@ -9,6 +9,7 @@ Key Components of Customer Churn Analysis
 5.	Mitigation Strategies: Develop strategies to retain customers. This can include personalized marketing, loyalty programs, improved customer service, and targeted promotions.
 
 Benefits of Customer Churn Analysis
+
 •	Improved Customer Retention: By understanding why customers leave, businesses can take proactive steps to retain them.
 •	Cost Savings: Retaining existing customers is often more cost-effective than acquiring new ones.
 •	Enhanced Customer Experience: Identifying pain points allows businesses to improve their products and services.
