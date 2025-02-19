@@ -37,3 +37,49 @@ The log of likelihood is:
 
 $$ logl(\beta) = \sum_{i=1}^n d_i log(h(t_i)) - H(t_i) $$
 where $log$ is the natural logarithm.
+
+# Survival Analysis
+
+This repository contains information and code related to survival analysis, including the probability density function, cumulative distribution function, survival function, cumulative hazard, and instantaneous hazard.
+
+## Key Concepts
+
+### Probability Density Function (PDF) and Cumulative Distribution Function (CDF)
+- **PDF**: \( f(t) \)
+- **CDF**: \( F(t) \)
+
+### Survival Function
+The probability of surviving at least to time \( t \) is given by:
+\[ Pr(T > t) = S(t) = 1 - F(t) \]
+
+### Cumulative Hazard
+The cumulative hazard at time \( t \) is defined as:
+\[ H(t) = -\ln(S(t)) \]
+
+### Instantaneous Hazard
+The instantaneous hazard at time \( t \) is:
+\[ h(t) = \frac{dH(t)}{dt} \]
+It can also be written as:
+\[ h(t) = \frac{f(t)}{S(t)} \]
+
+## Likelihood Function for Survival Analysis
+The likelihood function for survival analysis is described as:
+\[ l(\beta) = \prod_{i=1}^{n} h(t_{i})^{d_{i}} S(t_{i}) \]
+where:
+- \( d_i \) is the censoring variable that equals 1 if the event is observed for individual \( i \) and 0 if the event is not observed (censored) for individual \( i \).
+- \( h(t_i) \) is the hazard for individual \( i \) at time \( t \).
+- \( H(t_i) \) is the cumulative hazard for individual \( i \) at time \( t \).
+- \( S(t_i) \) is the survival probability for individual \( i \) at time \( t \).
+
+Note that when \( d_i = 0 \), the contribution of the \( i \)-th individual to the likelihood function is just its survival probability until time \( t \): \( S(t) \). If the individual has the event, the contribution to the likelihood function is given by the density function \( f(t) = h(t)S(t) \).
+
+## Log-Likelihood Function
+The log of the likelihood function is:
+\[ \log l(\beta) = \sum_{i=1}^{n} d_i \log(h(t_i)) - H(t_i) \]
+where \( \log \) is the natural logarithm.
+
+## Usage
+Include any instructions or code examples on how to use the functions or models described above.
+
+## License
+Include information about the license for your repository.
