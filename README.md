@@ -23,7 +23,7 @@ Customer churn analysis is the process of identifying and understanding why cust
 Customer churn significantly impacts companies, especially Software-as-a-Service (SaaS) businesses, due to high customer acquisition costs. Churn affects Business-to-Business (B2B) and Business-to-Consumer (B2C) businesses differently, with B2C experiencing higher rates due to easier subscription changes. B2B churn is more impactful due to fewer, high-value customers. Churn can demoralize staff and distract from serving existing customers. There are two types of churn: voluntary (customer choice) and involuntary (external factors). Companies should measure churn rates regularly and use metrics like Customer Satisfaction (CSAT), Net Promoter Score (NPS), and Customer Effort Score (CES) to gauge customer satisfaction. Predictive and preventive churn models, survival analysis, and anomaly detection help forecast and mitigate churn. Reducing churn involves identifying at-risk customers, investing in customer success, providing excellent service, fair pricing, and strong loyalty programs. Artificial Intelligence (AI) can enhance churn management through better data analysis, predictive analytics, and improved customer support.
 
 # **Maths Behind Customer Survival Analysis**
-# Survival Analysis: Key Concepts and Likelihood Function
+### Survival Analysis: Key Concepts and Likelihood Function
 
 In survival analysis, the probability of surviving at least until time \( t \) is defined in terms of the probability density function \( f(t) \) and the cumulative distribution function \( F(t) \). The survival function \( S(t) \) is given by:
 
