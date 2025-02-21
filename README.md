@@ -24,114 +24,15 @@ Customer churn significantly impacts companies, especially Software-as-a-Service
 
 # **Maths Behind Customer Survival Analysis**
 
-The probability of surviving at least to time \( t \) is given by the **survival function** \( S(t) \), which is defined as:
+The Kaplan-Meier method calculates the probability of survival at time 𝑡  as:
 
-\[
-S(t) = P(T > t) = 1 - F(t)
-\]
+$$ S(t) = \prod_{i=1}^{t-1} (1 - \frac{d_i}{n_i}) $$
 
-where:
+where,
+- 𝑆(𝑡) is the probability of survival until time 𝑡, 
+- $𝑑_𝑖$  is the number of units that experienced the event at time 𝑡,  
+- $𝑛_𝑖$  is the number of units at risk of experiencing the event at time 𝑡.  
 
-- \( F(t) \) is the cumulative distribution function (CDF), defined as:
+$𝑛_𝑖$ decreases with time, as units experience the event or are censored. $\frac{d_i}{n_i}$ is the probability of experiencing the event at time 𝑖 and $(1− \frac{d_i}{n_i})$ is the probability of surviving at time 𝑖. 
 
-  \[
-  F(t) = P(T \leq t) = \int_0^t f(u) \, du
-  \]
-
-- \( f(t) \) is the probability density function (PDF).
-
-Thus, the survival function can also be expressed as:
-
-\[
-S(t) = \int_t^{\infty} f(u) \, du.
-\]
-
-Method 1: Kaplan-Meier Curve
-The Kaplan-Meier estimator is a non-parametric statistic used to estimate the survival function from time-to-event data. It is especially useful when dealing with censored data, where some subjects do not experience the event by the end of the study period.
-
-The Kaplan-Meier survival function is defined as:
-
-𝑆
-(
-𝑡
-)
-=
-∏
-𝑖
-=
-1
-𝑡
-(
-1
-−
-𝑑
-𝑖
-𝑛
-𝑖
-)
-S(t)= 
-i=1
-∏
-t
-​
- (1− 
-n 
-i
-​
- 
-d 
-i
-​
- 
-​
- )
-where:
-
-𝑆
-(
-𝑡
-)
-S(t) is the estimated probability of surviving beyond time 
-𝑡
-t.
-𝑑
-𝑖
-d 
-i
-​
-  is the number of events (e.g., deaths, failures) at time 
-𝑡
-𝑖
-t 
-i
-​
- .
-𝑛
-𝑖
-n 
-i
-​
-  is the number of individuals at risk just before 
-𝑡
-𝑖
-t 
-i
-​
-  (including those who will experience the event at 
-𝑡
-𝑖
-t 
-i
-​
- ).
-How the Kaplan-Meier Estimator Works:
-The timeline is divided based on observed event times.
-At each event time 
-𝑡
-𝑖
-t 
-i
-​
- , the survival probability is updated using the formula above.
-If no event occurs at a given time, the survival probability remains unchanged.
-Censored observations (where the event is not observed) do not contribute to the numerator but are removed from the denominator in subsequent calculations.
+Note that this method does not use any parameters, it only depends on the data on time and censoring.
