@@ -79,7 +79,7 @@ where \( \log \) is the natural logarithm.
 - The log-likelihood is often used for optimization and parameter estimation in survival models.
 
 
-# **Kaplan-Meier method **
+## **Kaplan-Meier method**
 
 The Kaplan-Meier method calculates the probability of survival at time 𝑡  as:
 
