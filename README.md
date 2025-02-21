@@ -23,6 +23,63 @@ Customer churn analysis is the process of identifying and understanding why cust
 Customer churn significantly impacts companies, especially Software-as-a-Service (SaaS) businesses, due to high customer acquisition costs. Churn affects Business-to-Business (B2B) and Business-to-Consumer (B2C) businesses differently, with B2C experiencing higher rates due to easier subscription changes. B2B churn is more impactful due to fewer, high-value customers. Churn can demoralize staff and distract from serving existing customers. There are two types of churn: voluntary (customer choice) and involuntary (external factors). Companies should measure churn rates regularly and use metrics like Customer Satisfaction (CSAT), Net Promoter Score (NPS), and Customer Effort Score (CES) to gauge customer satisfaction. Predictive and preventive churn models, survival analysis, and anomaly detection help forecast and mitigate churn. Reducing churn involves identifying at-risk customers, investing in customer success, providing excellent service, fair pricing, and strong loyalty programs. Artificial Intelligence (AI) can enhance churn management through better data analysis, predictive analytics, and improved customer support.
 
 # **Maths Behind Customer Survival Analysis**
+# Survival Analysis: Key Concepts and Likelihood Function
+
+In survival analysis, the probability of surviving at least until time \( t \) is defined in terms of the probability density function \( f(t) \) and the cumulative distribution function \( F(t) \). The survival function \( S(t) \) is given by:
+
+$$
+Pr(T > t) = S(t) = 1 - F(t)
+$$
+
+### Hazard Functions:
+- **Cumulative Hazard Function**: The cumulative hazard at time \( t \) is defined as:
+  $$
+  H(t) = -\ln(S(t))
+  $$
+
+- **Instantaneous Hazard Function**: The instantaneous hazard at time \( t \) is the derivative of the cumulative hazard:
+  $$
+  h(t) = \frac{dH(t)}{dt}
+  $$
+  Alternatively, it can also be expressed as:
+  $$
+  h(t) = \frac{f(t)}{S(t)}
+  $$
+
+### Likelihood Function:
+The likelihood function for survival analysis is defined as:
+
+$$
+l(\beta) = \prod_{i=1}^{n} h(t_i)^{d_i} S(t_i)
+$$
+
+#### Key Components:
+- **\( d_i \)**: A censoring indicator variable:
+  - \( d_i = 1 \) if the event is observed for individual \( i \).
+  - \( d_i = 0 \) if the event is censored for individual \( i \).
+- **\( h(t_i) \)**: The hazard function for individual \( i \) at time \( t \).
+- **\( H(t_i) \)**: The cumulative hazard for individual \( i \) at time \( t \).
+- **\( S(t_i) \)**: The survival probability for individual \( i \) at time \( t \).
+
+#### Interpretation:
+- If \( d_i = 0 \) (censored), the contribution to the likelihood is the survival probability \( S(t) \).
+- If \( d_i = 1 \) (event observed), the contribution is the density function \( f(t) = h(t)S(t) \).
+
+### Log-Likelihood Function:
+The log of the likelihood function is given by:
+
+$$
+\log l(\beta) = \sum_{i=1}^n \left[ d_i \log(h(t_i)) - H(t_i) \right]
+$$
+
+where \( \log \) is the natural logarithm.
+
+### Notes:
+- The likelihood function accounts for both observed events and censored data, making it a fundamental tool in survival analysis.
+- The log-likelihood is often used for optimization and parameter estimation in survival models.
+
+
+# **Kaplan-Meier method **
 
 The Kaplan-Meier method calculates the probability of survival at time 𝑡  as:
 
