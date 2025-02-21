@@ -22,7 +22,7 @@ Customer churn analysis is the process of identifying and understanding why cust
 ## **The Impact of Customer Churn on Businesses**
 Customer churn significantly impacts companies, especially Software-as-a-Service (SaaS) businesses, due to high customer acquisition costs. Churn affects Business-to-Business (B2B) and Business-to-Consumer (B2C) businesses differently, with B2C experiencing higher rates due to easier subscription changes. B2B churn is more impactful due to fewer, high-value customers. Churn can demoralize staff and distract from serving existing customers. There are two types of churn: voluntary (customer choice) and involuntary (external factors). Companies should measure churn rates regularly and use metrics like Customer Satisfaction (CSAT), Net Promoter Score (NPS), and Customer Effort Score (CES) to gauge customer satisfaction. Predictive and preventive churn models, survival analysis, and anomaly detection help forecast and mitigate churn. Reducing churn involves identifying at-risk customers, investing in customer success, providing excellent service, fair pricing, and strong loyalty programs. Artificial Intelligence (AI) can enhance churn management through better data analysis, predictive analytics, and improved customer support.
 
-# **Maths Behind it**
+# **Maths Behind Customer Survival Analysis**
 
 The probability of surviving at least to time \( t \) is given by the **survival function** \( S(t) \), which is defined as:
 
@@ -46,48 +46,92 @@ Thus, the survival function can also be expressed as:
 S(t) = \int_t^{\infty} f(u) \, du.
 \]
 
-# Survival Analysis
+Method 1: Kaplan-Meier Curve
+The Kaplan-Meier estimator is a non-parametric statistic used to estimate the survival function from time-to-event data. It is especially useful when dealing with censored data, where some subjects do not experience the event by the end of the study period.
 
-This repository contains information and code related to survival analysis, including the probability density function, cumulative distribution function, survival function, cumulative hazard, and instantaneous hazard.
+The Kaplan-Meier survival function is defined as:
 
-## Key Concepts
-
-### Probability Density Function (PDF) and Cumulative Distribution Function (CDF)
-- **PDF**: \( f(t) \)
-- **CDF**: \( F(t) \)
-
-### Survival Function
-The probability of surviving at least to time \( t \) is given by:
-\[ Pr(T > t) = S(t) = 1 - F(t) \]
-
-### Cumulative Hazard
-The cumulative hazard at time \( t \) is defined as:
-\[ H(t) = -\ln(S(t)) \]
-
-### Instantaneous Hazard
-The instantaneous hazard at time \( t \) is:
-\[ h(t) = \frac{dH(t)}{dt} \]
-It can also be written as:
-\[ h(t) = \frac{f(t)}{S(t)} \]
-
-## Likelihood Function for Survival Analysis
-The likelihood function for survival analysis is described as:
-\[ l(\beta) = \prod_{i=1}^{n} h(t_{i})^{d_{i}} S(t_{i}) \]
+𝑆
+(
+𝑡
+)
+=
+∏
+𝑖
+=
+1
+𝑡
+(
+1
+−
+𝑑
+𝑖
+𝑛
+𝑖
+)
+S(t)= 
+i=1
+∏
+t
+​
+ (1− 
+n 
+i
+​
+ 
+d 
+i
+​
+ 
+​
+ )
 where:
-- \( d_i \) is the censoring variable that equals 1 if the event is observed for individual \( i \) and 0 if the event is not observed (censored) for individual \( i \).
-- \( h(t_i) \) is the hazard for individual \( i \) at time \( t \).
-- \( H(t_i) \) is the cumulative hazard for individual \( i \) at time \( t \).
-- \( S(t_i) \) is the survival probability for individual \( i \) at time \( t \).
 
-Note that when \( d_i = 0 \), the contribution of the \( i \)-th individual to the likelihood function is just its survival probability until time \( t \): \( S(t) \). If the individual has the event, the contribution to the likelihood function is given by the density function \( f(t) = h(t)S(t) \).
-
-## Log-Likelihood Function
-The log of the likelihood function is:
-\[ \log l(\beta) = \sum_{i=1}^{n} d_i \log(h(t_i)) - H(t_i) \]
-where \( \log \) is the natural logarithm.
-
-## Usage
-Include any instructions or code examples on how to use the functions or models described above.
-
-## License
-Include information about the license for your repository.
+𝑆
+(
+𝑡
+)
+S(t) is the estimated probability of surviving beyond time 
+𝑡
+t.
+𝑑
+𝑖
+d 
+i
+​
+  is the number of events (e.g., deaths, failures) at time 
+𝑡
+𝑖
+t 
+i
+​
+ .
+𝑛
+𝑖
+n 
+i
+​
+  is the number of individuals at risk just before 
+𝑡
+𝑖
+t 
+i
+​
+  (including those who will experience the event at 
+𝑡
+𝑖
+t 
+i
+​
+ ).
+How the Kaplan-Meier Estimator Works:
+The timeline is divided based on observed event times.
+At each event time 
+𝑡
+𝑖
+t 
+i
+​
+ , the survival probability is updated using the formula above.
+If no event occurs at a given time, the survival probability remains unchanged.
+Censored observations (where the event is not observed) do not contribute to the numerator but are removed from the denominator in subsequent calculations.
