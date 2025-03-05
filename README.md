@@ -145,23 +145,9 @@ When comparing \( k \) groups:
 
 
 
+# Log-Rank Test for Comparing Multiple Groups
 
-
-### Components of the Test Statistic
-
-- **\( O_j - E_j \)**: The difference between the observed and expected number of events in group \( j \):
-  $$
-  O_j - E_j = \sum_i (o_{ij} - e_{ij})
-  $$
-
-- **\( \text{var}(O_j - E_j) \)**: The variance of the difference:
-  $$
-  \text{var}(O_j - E_j) = o_i \frac{n_{ij}}{n_i} \left(1 - \frac{n_{ij}}{n_i}\right) \frac{(n_i - o_i)}{(n_i - 1)}
-  $$
-
----
-
-### Definitions
+## Definitions
 
 - **\( o_{ij} \)**: Observed number of events in group \( j \) at time \( i \).
 - **\( e_{ij} \)**: Expected number of events in group \( j \) at time \( i \), calculated as:
@@ -172,9 +158,19 @@ When comparing \( k \) groups:
 - **\( n_i \)**: Total number of units at risk across all groups at time \( i \).
 - **\( o_i \)**: Total observed number of events across all groups at time \( i \).
 
----
+## Formulas
 
-### Comparing Multiple Groups
+- **Difference between observed and expected number of events in group \( j \)**:
+  $$
+  O_j - E_j = \sum_i (o_{ij} - e_{ij})
+  $$
+
+- **Variance of the difference**:
+  $$
+  \text{var}(O_j - E_j) = o_i \frac{n_{ij}}{n_i} \left(1 - \frac{n_{ij}}{n_i}\right) \frac{(n_i - o_i)}{(n_i - 1)}
+  $$
+
+## Comparing Multiple Groups
 
 When comparing \( k \) groups:
 
@@ -183,14 +179,17 @@ When comparing \( k \) groups:
    $$
    \text{logrankstatistic} = \mathbf{Z} \Sigma^{-1} \mathbf{Z}'
    $$
-
    where:
-   - **\( \Sigma^{-1} \)**: The inverse of the \( (k-1) \times (k-1) \) variance-covariance matrix of \( \mathbf{Z} \).
-   - **Diagonal elements of \( \Sigma \)**: The variances of \( k_j \).
-   - **Off-diagonal elements of \( \Sigma \)**: The covariances \( \text{covar}(k_{jg}) \), calculated as:
+   - \( \Sigma^{-1} \) is the inverse of the \( (k-1) \times (k-1) \) variance-covariance matrix of \( \mathbf{Z} \).
+   - The diagonal elements of \( \Sigma \) are the variances of \( k_j \).
+   - The off-diagonal elements are the covariances \( \text{covar}(k_{jg}) \), calculated as:
      $$
      \text{covar}(k_{jg}) = o_i \frac{n_{ij} n_{ig}}{n_i^2} \frac{(n_i - o_i)}{(n_i - 1)}
      $$
+
+
+
+
 ### Interpretation:
 - Rejecting the null hypothesis indicates that the survival times of the groups do not come from the same distribution.
 - The test does not specify which group(s) differ.
