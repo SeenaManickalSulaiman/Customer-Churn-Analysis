@@ -143,6 +143,54 @@ When comparing \( k \) groups:
      \text{covar}(k_{jg}) = o_i \frac{n_{ij} n_{ig}}{n_i^2} \frac{(n_i - o_i)}{(n_i - 1)}
      $$
 
+
+
+
+
+### Components of the Test Statistic
+
+- **\( O_j - E_j \)**: The difference between the observed and expected number of events in group \( j \):
+  $$
+  O_j - E_j = \sum_i (o_{ij} - e_{ij})
+  $$
+
+- **\( \text{var}(O_j - E_j) \)**: The variance of the difference:
+  $$
+  \text{var}(O_j - E_j) = o_i \frac{n_{ij}}{n_i} \left(1 - \frac{n_{ij}}{n_i}\right) \frac{(n_i - o_i)}{(n_i - 1)}
+  $$
+
+---
+
+### Definitions
+
+- **\( o_{ij} \)**: Observed number of events in group \( j \) at time \( i \).
+- **\( e_{ij} \)**: Expected number of events in group \( j \) at time \( i \), calculated as:
+  $$
+  e_{ij} = \frac{n_{ij}}{n_i} o_i
+  $$
+- **\( n_{ij} \)**: Number of units at risk in group \( j \) at time \( i \).
+- **\( n_i \)**: Total number of units at risk across all groups at time \( i \).
+- **\( o_i \)**: Total observed number of events across all groups at time \( i \).
+
+---
+
+### Comparing Multiple Groups
+
+When comparing \( k \) groups:
+
+1. Calculate pairwise log-rank test statistics for \( k-1 \) groups, forming a vector \( \mathbf{Z} \) with \( k-1 \) elements.
+2. The test statistic for the hypothesis that there is no difference in survival times across \( k \) groups is:
+   $$
+   \text{logrankstatistic} = \mathbf{Z} \Sigma^{-1} \mathbf{Z}'
+   $$
+
+   where:
+   - **\( \Sigma^{-1} \)**: The inverse of the \( (k-1) \times (k-1) \) variance-covariance matrix of \( \mathbf{Z} \).
+   - **Diagonal elements of \( \Sigma \)**: The variances of \( k_j \).
+   - **Off-diagonal elements of \( \Sigma \)**: The covariances \( \text{covar}(k_{jg}) \), calculated as:
+     $$
+     \text{covar}(k_{jg}) = o_i \frac{n_{ij} n_{ig}}{n_i^2} \frac{(n_i - o_i)}{(n_i - 1)}
+     $$
 ### Interpretation:
 - Rejecting the null hypothesis indicates that the survival times of the groups do not come from the same distribution.
 - The test does not specify which group(s) differ.
